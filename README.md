@@ -1,5 +1,5 @@
 ## Author
-- dieh4cker
+- <h1>dieh4cker</h1>
 
 # Linked List Operations in C
 
