@@ -91,7 +91,8 @@ int main()
         printf("Welcome to DSA link list practicals !!\n");
         printf("1.Insert element\n");
         printf("2.Traverse element\n");
-        printf("3.Delete element\n");
+        printf("3.Delete first list element\n");
+        printf("4.Delete specific element\n");
         printf("0.exit\n");
         printf("Enter your choice: ");
         scanf("%d", &user_input);
