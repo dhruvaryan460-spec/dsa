@@ -171,3 +171,34 @@ struct node *deletebeg_ll(struct node *head)
     free(temp);
     return head;
 }
+
+struct node *delete_ll(struct node *head, int ele)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    if (head->data == ele)
+    {
+        struct node *temp = head;
+        head = temp->link;
+        free(temp);
+        return head;
+    }
+    struct node *prev = head;
+    struct node *current = head->link;
+    while (current != NULL)
+    {
+        if (current->data == ele)
+        {
+            prev->link = current->link;
+            free(current);
+            return head;
+        }
+        prev = current;
+        current = current->link;
+    }
+    printf("Element not found !\n");
+    return head;
+}

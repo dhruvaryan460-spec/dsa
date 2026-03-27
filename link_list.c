@@ -49,6 +49,37 @@ struct node *deletebeg_ll(struct node *head)
     return head;
 }
 
+struct node *delete_ll(struct node *head, int ele)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    if (head->data == ele)
+    {
+        struct node *temp = head;
+        head = temp->link;
+        free(temp);
+        return head;
+    }
+    struct node *prev = head;
+    struct node *current = head->link;
+    while (current != NULL)
+    {
+        if (current->data == ele)
+        {
+            prev->link = current->link;
+            free(current);
+            return head;
+        }
+        prev = current;
+        current = current->link;
+    }
+    printf("Element not found !\n");
+    return head;
+}
+
 int main()
 {
     struct node *head = NULL;
@@ -94,6 +125,15 @@ int main()
             printf("--------------------------------------------------\n");
             printf("Deleting the first element in the linked list...\n");
             head = deletebeg_ll(head);
+            Sleep(5000);
+            system("cls");
+            break;
+        case 4:
+            printf("\n");
+            printf("--------------------------------------------------\n");
+            printf("Enter the element you want to delete: ");
+            scanf("%d", &ele);
+            head = delete_ll(head, ele);
             Sleep(5000);
             system("cls");
             break;
