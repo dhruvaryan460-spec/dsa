@@ -122,3 +122,52 @@ void binary_search(int arr[], int n, int ele)
 
     printf("Element not found");
 }
+
+//practical 7
+struct node
+{
+    int data;
+    struct node *link;
+};
+
+struct node *insertbeg_ll(struct node *head, int ele)
+{
+    struct node *newNode;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    if (newNode == NULL)
+    {
+        return head;
+    }
+
+    newNode->data = ele;
+    newNode->link = NULL;
+    newNode->link = head;
+    head = newNode;
+    return head;
+}
+
+//practical 8
+void traverse_ll(struct node *head)
+{
+    struct node *temp = head;
+    printf("The elements in the linked list are... ");
+    while (temp != NULL)
+    { 
+        printf("\n%d ", temp->data);
+        temp = temp->link;
+    }
+    printf("\n");
+}
+//practical 9
+struct node *deletebeg_ll(struct node *head)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    struct node *temp = head;
+    head = temp->link;
+    free(temp);
+    return head;
+}

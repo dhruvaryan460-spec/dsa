@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 struct node
 {
@@ -35,18 +36,75 @@ void traverse_ll(struct node *head)
     printf("\n");
 }
 
+struct node *deletebeg_ll(struct node *head)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    struct node *temp = head;
+    head = temp->link;
+    free(temp);
+    return head;
+}
+
 int main()
 {
     struct node *head = NULL;
-    int ele, n;
-    printf("Enter the no. of element you want to insert: ");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++)
+    while (1)
     {
-        printf("Enter the %d element: ", i);
-        scanf("%d", &ele);
-        head = insertbeg_ll(head, ele);
+        int ele, n;
+        int user_input;
+        system("cls");
+        printf("Welcome to DSA link list practicals !!\n");
+        printf("1.Insert element\n");
+        printf("2.Traverse element\n");
+        printf("3.Delete element\n");
+        printf("0.exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &user_input);
+
+        switch (user_input)
+        {
+        case 1:
+            printf("\n");
+            printf("--------------------------------------------------\n");
+            printf("\n");
+            printf("Enter the no. of elements you want to store: ");
+            scanf("%d", &n);
+            for (int i = 0; i < n; i++)
+            {
+                printf("Enter the element %d: ", i + 1);
+                scanf("%d", &ele);
+                head = insertbeg_ll(head, ele);
+            }
+            Sleep(5000);
+            system("cls");
+            break;
+        case 2:
+            printf("\n");
+            printf("--------------------------------------------------\n");
+            traverse_ll(head);
+            Sleep(5000);
+            system("cls");
+            break;
+        case 3:
+            printf("\n");
+            printf("--------------------------------------------------\n");
+            printf("Deleting the first element in the linked list...\n");
+            head = deletebeg_ll(head);
+            Sleep(5000);
+            system("cls");
+            break;
+
+        case 0:
+            return 0;
+
+        default:
+            // printf("Enter a valid number ! \n");
+            break;
+        }
     }
-    traverse_ll(head);
     return 0;
 }
