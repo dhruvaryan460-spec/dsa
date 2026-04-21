@@ -124,7 +124,7 @@ void binary_search(int arr[], int n, int ele)
 }
 
 //practical 7
-struct node
+struct node1
 {
     int data;
     struct node *link;
@@ -146,7 +146,6 @@ struct node *insertbeg_ll(struct node *head, int ele)
     return head;
 }
 
-//practical 8
 void traverse_ll(struct node *head)
 {
     struct node *temp = head;
@@ -158,7 +157,7 @@ void traverse_ll(struct node *head)
     }
     printf("\n");
 }
-//practical 9
+
 struct node *deletebeg_ll(struct node *head)
 {
     if (head == NULL)
@@ -198,6 +197,94 @@ struct node *delete_ll(struct node *head, int ele)
         }
         prev = current;
         current = current->link;
+    }
+    printf("Element not found !\n");
+    return head;
+}
+
+// practical 8
+struct node
+{
+    struct node *prev;
+    int data;
+    struct node *next;
+};
+struct node *insertbeg_dll(struct node *head, int ele)
+{
+    struct node *newNode;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    if (newNode == NULL)
+    {
+        return head;
+    }
+
+    newNode->data = ele;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+    newNode->next = head;
+    if (head != NULL)
+    {
+        head->prev = newNode;
+    }
+    head = newNode;
+    return head;
+}
+
+void traverse_dll(struct node *head)
+{
+    struct node *temp = head;
+    printf("The elements in the linked list are... ");
+    while (temp != NULL)
+    {
+        printf("\n%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+struct node *deletebeg_dll(struct node *head)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    struct node *temp = head;
+    head = temp->next;
+    if (head != NULL)
+    {
+        head->prev = NULL;
+    }
+    free(temp);
+    return head;
+}
+
+struct node *delete_dll(struct node *head, int ele)
+{
+    if (head == NULL)
+    {
+        printf("The linked list is empty !\n");
+        return head;
+    }
+    if (head->data == ele)
+    {
+        struct node *temp = head;
+        head = temp->next;
+        free(temp);
+        return head;
+    }
+    struct node *prev = head;
+    struct node *current = head->next;
+    while (current != NULL)
+    {
+        if (current->data == ele)
+        {
+            prev->next = current->next;
+            free(current);
+            return head;
+        }
+        prev = current;
+        current = current->next;
     }
     printf("Element not found !\n");
     return head;
